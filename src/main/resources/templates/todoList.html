@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        li {
+            background-color: #ffffff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            display: inline-block;
+            margin-left: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a.delete {
+            color: #dc3545;
+        }
+
+        a.delete:hover {
+            color: #a71d2a;
+        }
+
+        a.edit {
+            color: #ffc107;
+        }
+
+        a.edit:hover {
+            color: #c69407;
+        }
+
+        a.create {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #28a745;
+        }
+
+        a.create:hover {
+            color: #1b862c;
+        }
+    </style>
+</head>
+<body>
+<h1>Todo List</h1>
+<ul>
+    <li th:each="todo : ${todos}">
+        <span th:text="${todo.title}"></span>
+        <span th:if="${todo.completed}"> (Completed)</span>
+        <a th:href="@{/edit/{id}(id=${todo.id})}" class="edit">Edit</a>
+        <a th:href="@{/delete/{id}(id=${todo.id})}" class="delete" >Delete</a>
+
+    </li>
+</ul>
+<a th:href="@{/create}" class="create">Create New Todo</a>
+</body>
+</html>
